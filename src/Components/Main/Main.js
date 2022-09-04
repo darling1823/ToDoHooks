@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import * as S from './Style'
 
 const Main = () => {
 
@@ -8,20 +9,20 @@ const Main = () => {
     const Remove = (id) => {setList(list.filter((item)=>item.id !== id))}
 
     return(
-        <form onSubmit={(e)=>{
+        <S.FORM onSubmit={(e)=>{
            e.preventDefault()
         }}>
         <input value={task} onChange={(e)=>{setTask(e.target.value)}} />
-        <button onClick={()=>{if(task !== ''){setList([...list, Tasks], setTask(''))}}}>Send</button>
-        <button onClick={()=>{setList([])}}>Remove All</button>
+        <S.BUTTON onClick={()=>{if(task !== ''){setList([...list, Tasks], setTask(''))}else{setTask('')}}}>Send</S.BUTTON>
+        <S.BUTTON onClick={()=>{setList([])}}>Remove All</S.BUTTON>
         {list.map((item, index)=>(
-            <div key={index}>
+            <S.DIV key={index}>
                 <ul><li>{item.task}</li></ul>
                 <button onClick={()=>{Remove(item.id)}}>X</button>
-            </div>
+            </S.DIV>
         
         ))}
-        </form>
+        </S.FORM>
     )
 }
 
